@@ -1,12 +1,14 @@
 package br.com.teste.banco.model;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Time {
+public class Time implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String nome;
@@ -102,7 +105,7 @@ public class Time {
 		this.capitao = capitao;
 	}
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	public List<Jogador> getJogadores() {
 		return jogadores;
 	}
@@ -110,5 +113,13 @@ public class Time {
 	public void setJogadores(List<Jogador> jogadores) {
 		this.jogadores = jogadores;
 	}
+
+	@Override
+	public String toString() {
+		return "Time [id=" + id + ", nome=" + nome + ", dataCriacao=" + dataCriacao + ", corUniformePrincipal="
+				+ corUniformePrincipal + ", corUniformeSecundario=" + corUniformeSecundario + ", capitao=" + capitao
+				+ "]";
+	}
+	
 	
 }

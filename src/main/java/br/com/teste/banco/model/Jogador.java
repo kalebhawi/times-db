@@ -1,5 +1,6 @@
 package br.com.teste.banco.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,8 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Jogador {
+public class Jogador implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private Long idTime;
 	private String nome;
@@ -99,6 +102,12 @@ public class Jogador {
 
 	public void setTime(Time time) {
 		this.time = time;
+	}
+
+	@Override
+	public String toString() {
+		return "Jogador [id=" + id + ", idTime=" + idTime + ", nome=" + nome + ", dataNascimento=" + dataNascimento
+				+ ", nivelHabilidade=" + nivelHabilidade + ", salario=" + salario + ", time=" + time.getNome() + "]";
 	}
 
 }
