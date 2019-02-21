@@ -1,7 +1,6 @@
 package br.com.teste.banco.service;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import br.com.teste.banco.model.Jogador;
 import br.com.teste.banco.model.Time;
@@ -20,7 +19,7 @@ public interface TimeService {
 
 	public String buscarMelhorJogadorDoTime(Long idTime);
 
-	public List<String> buscarJogadorMaisVelho(Long idTime);
+	public Jogador buscarJogadorMaisVelho(Long idTime);
 
 	public List<Time> buscarTimes();
 

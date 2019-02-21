@@ -41,21 +41,19 @@ public class TimeServiceImpl implements TimeService {
 
 	@Override
 	public String buscarMelhorJogadorDoTime(Long idTime) {
-		Time t = timeDao.porId(idTime);
-		t.getJogadores().size();
-		
-		String s = t.getJogadores().stream()
+		return timeDao.porId(idTime).getJogadores().stream()
 				.sorted(Comparator.comparingInt(Jogador::getNivelHabilidade).reversed())
 				.map(Jogador::getNome)
 				.limit(1)
 				.collect(Collectors.toList())
 				.toString();
-		return s;
 	}
 
 	@Override
-	public List<String> buscarJogadorMaisVelho(Long idTime) {
-		return null;
+	public Jogador buscarJogadorMaisVelho(Long idTime) {
+		return timeDao.porId(idTime).getJogadores().stream()
+				.sorted(Comparator.comparing(Jogador::getDataNascimento))
+				.findFirst().get();
 	}
 
 	@Override

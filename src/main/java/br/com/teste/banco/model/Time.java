@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -96,7 +97,7 @@ public class Time implements Serializable {
 		this.corUniformeSecundario = corUniformeSecundario;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	public Jogador getCapitao() {
 		return capitao;
 	}
@@ -105,7 +106,7 @@ public class Time implements Serializable {
 		this.capitao = capitao;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<Jogador> getJogadores() {
 		return jogadores;
 	}

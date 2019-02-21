@@ -15,6 +15,7 @@ import br.com.teste.banco.util.HibernateUtil;
 
 public class TimeDao {
 
+	//metodo para puxar todas info do objeto time
 	public Time porId(Long idTime) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			return session.find(Time.class, idTime);
@@ -52,7 +53,6 @@ public class TimeDao {
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(time);
 			transaction.commit();
-			session.close();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

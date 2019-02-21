@@ -5,12 +5,14 @@ import java.util.List;
 import br.com.teste.banco.dao.JogadorDao;
 import br.com.teste.banco.model.Jogador;
 import br.com.teste.banco.model.Time;
+import br.com.teste.banco.service.impl.JogadorServiceImpl;
 import br.com.teste.banco.service.impl.TimeServiceImpl;
 
 public class App {
 	public static void main(String[] args) {
 
 		TimeServiceImpl timeServiceImpl = new TimeServiceImpl();
+		JogadorServiceImpl jogadorServiceImpl = new JogadorServiceImpl();
 		
 		List<Time> times = timeServiceImpl.buscarTimes();
 		
@@ -28,6 +30,10 @@ public class App {
 		System.out.println(timeServiceImpl.buscarCapitaoDoTime(1L).getNome());
 		
 		System.out.println(timeServiceImpl.buscarMelhorJogadorDoTime(1L));
+		
+		System.out.println(timeServiceImpl.buscarJogadorMaisVelho(1L));
+		
+		System.out.println(jogadorServiceImpl.buscarTopJogadores(5));
 		
 	}
 }
